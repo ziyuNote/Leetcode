@@ -1,0 +1,36 @@
+class Solution(object):
+    def minSubsequence(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        if len(nums) <= 1:
+            return nums
+        total = 0
+        for i in range(0,len(nums)):
+            total = nums[i]+total
+        
+        
+        l1 = []
+        for i in range(0,len(nums)):
+            if len(l1)==0:
+                l1 = [nums[i]]
+            else:
+                if nums[i]<l1[-1]:
+                    l1.append(nums[i])
+                    continue
+                for j in range(0,i):
+                    if nums[i]>=l1[j]:
+                        l1.insert(j,nums[i])
+                        break
+                
+                    
+        sum1 = 0
+        pos = 0
+        while sum1<=total:
+            sum1 = sum1+l1[pos]
+            total = total-l1[pos]
+            pos = pos+1
+        
+        return l1[0:pos]
+    
