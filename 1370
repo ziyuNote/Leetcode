@@ -10,23 +10,35 @@ class Solution(object):
         import numpy as np
         l = np.zeros(26)
         for i in range(0,len(s)):
-            print(s[i])
-            dn = int(s[i]-'a')
+            dn = int(ord(s[i])-ord('a'))
             l[dn] = l[dn]+1
         r = ''
-        pos = 0
+        i = 0
         flg = 1
-        print(l)
-        
+        cnt = 0
 
-        for i in range(0,len(s)):
-            if pos>25 or pos<0:
-                flg = -flg
-                pos = pos+flg
-            while l[pos] == 0:
-                pos = pos+flg
-            r = r+voc[pos]
-            l[pos] = l[pos]-1
-            pos = pos+flg
+        while cnt<len(s):
+            while i < 26:
+                if l[i] > 0:
+                    l[i] = l[i]-1
+                    r = r+voc[i]
+                    cnt = cnt+1
+                    if cnt ==len(s):
+                        break
+                i = i+1
+            i = 25
+            while i > -1:
+                if l[i] > 0:
+                    l[i] = l[i]-1
+                    r = r+voc[i]
+                    cnt = cnt+1
+                    if cnt == len(s):
+                        break
+                i=i-1
+            i=0
+            
+            
                 
         return r
+
+            
