@@ -1,0 +1,32 @@
+class Solution(object):
+    def sortString(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+
+
+        voc = 'abcdefghijklmnopqrstuvwxyz'
+        import numpy as np
+        l = np.zeros(26)
+        for i in range(0,len(s)):
+            print(s[i])
+            dn = int(s[i]-'a')
+            l[dn] = l[dn]+1
+        r = ''
+        pos = 0
+        flg = 1
+        print(l)
+        
+
+        for i in range(0,len(s)):
+            if pos>25 or pos<0:
+                flg = -flg
+                pos = pos+flg
+            while l[pos] == 0:
+                pos = pos+flg
+            r = r+voc[pos]
+            l[pos] = l[pos]-1
+            pos = pos+flg
+                
+        return r
