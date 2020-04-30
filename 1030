@@ -1,0 +1,19 @@
+class Solution(object):
+    def allCellsDistOrder(self, R, C, r0, c0):
+        """
+        :type R: int
+        :type C: int
+        :type r0: int
+        :type c0: int
+        :rtype: List[List[int]]
+        """
+        res =[]
+        dic = collections.defaultdict(list)
+        for r in range(0,R):
+            for c in range(0,C):
+                d = abs(r-r0)+abs(c-c0)
+                
+                dic[d]+=[[r,c]]
+        for i in range(0,max(R,r0)+max(C,c0)):
+            res +=dic[i]
+        return res
