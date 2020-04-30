@@ -4,56 +4,30 @@ class Solution(object):
         :type arr: List[int]
         :rtype: List[int]
         """
+        class Solution(object):
+    def sortByBits(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: List[int]
+        """
+        def cnt_1(x):
+            cnt = 0
+            l = "{0:b}".format(x)
+            for i in l:
+                if i == '1':
+                    cnt = cnt+1
+            return cnt
+        
         r = []
-        if len(arr) <= 1:
-            return arr
-        arr2 = [0]*len(arr)
-        arr3 = []
-        for i in range(0,len(arr)):
-            if arr[i] == 0:
-                continue
-            pre = arr[i]
-            while pre>0:
-                if pre%2 == 1:
-                    arr2[i] = arr2[i]+1
-                pre = pre/2 
-                
-        while len(arr)>0:
-            i_min = 0
-            for j in range(0,len(arr)):
-                if arr2[j]<arr2[i_min]:
-                    i_min = j
-            print(arr[i_min])
-            if len(r) == 0:
-                r = [arr.pop(i_min)]
-                arr3 = [arr2.pop(i_min)]
-            else:
-                if arr3[-1] < arr2[i_min]:
-                    r.append(arr.pop(i_min))
-                    arr3.append(arr2.pop(i_min))
-                elif r[-1]<arr[i_min]:
-                    r.append(arr.pop(i_min))
-                    arr3.append(arr2.pop(i_min))
-                else:
-                    m = len(arr3)-1
-                    while m>=0:
-                        if r[m]<=arr[i_min]:
-                            r.insert(m,arr.pop(i_min))
-                            arr3.insert(m,arr2.pop(i_min))
-                            break
-                        if arr3[m]<arr2[i_min]:
-                            r.insert(m,arr.pop(i_min))
-                            arr3.insert(m,arr2.pop(i_min))
-                            break
-                        if m == 0:
-                            r.insert(m,arr.pop(i_min))
-                            arr3.insert(m,arr2.pop(i_min))
-                            break
-                        else:
-                            m = m-1
-        print(arr3)
+        dic = collections.defaultdict(list)
+        for i in arr:
+            dic[cnt_1(i)] += [i]
+        
+        for i in range(1000):
+            r += sorted(dic[i])
+        
         return r
-                
+        
             
             
                     
