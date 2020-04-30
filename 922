@@ -1,0 +1,21 @@
+class Solution(object):
+    def sortArrayByParityII(self, A):
+        """
+        :type A: List[int]
+        :rtype: List[int]
+        """
+        e = []
+        o = []
+        for i in A:
+            if i%2 == 0:
+                e += [i]
+            else:
+                o += [i]
+        r = []
+        cnt = 0
+        while cnt<len(A):
+            r+=[e[cnt//2]]
+            r+=[o[cnt//2]]
+            cnt +=2
+        return r
+            
