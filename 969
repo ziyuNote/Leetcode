@@ -1,0 +1,27 @@
+class Solution(object):
+    def pancakeSort(self, A):
+        """
+        :type A: List[int]
+        :rtype: List[int]
+        """
+        res = []
+        l = len(A)
+        while l>0:
+            i_max = 0
+            for j in range(0,l):
+                if A[i_max]<A[j]:
+                    i_max = j
+            
+            
+           
+            
+            tmp = A[:i_max+1][::-1]+A[i_max+1:l]
+            A = tmp[:l][::-1]+A[l:len(A)]
+            if i_max>0:
+                res.append(i_max+1)
+            if l>1:
+                res.append(l)
+            l = l-1
+            
+        
+        return res
